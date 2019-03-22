@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Listado</title>
+    <style>
+
+        table {
+            border-spacing: 20px;
+        }    
+    
+    </style>
+</head>
+<body>
+    <h1>Listado de Actuaciones entre fechas de 
+        <span th:text="${empleado.nombre}"></span> <span th:text="${empleado.apellidos}"></span>
+    </h1>
+    <table>
+        <thead>
+            <th>Fecha</th>
+            <th>Hora Inicio</th>
+            <th>Hora Final</th>
+            <th>Precio Hora</th>
+            <th>Kilometraje</th>
+            <th>Dietas</th>
+            <th>Visado</th>
+            <th>Reprografía</th>
+            <th>Importe</th>
+            <th>Tipo actuación</th>
+            <th>Modificar</th>
+        </thead>
+        <tbody>
+            <tr th:each="resultado: ${resultados}">
+                <td th:text="${resultado[0].fecha}"></td>
+                <td th:text="${resultado[0].horaInicial}"></td>
+                <td th:text="${resultado[0].horaFinal}"></td>
+                <td th:text="${resultado[0].precioHora}"></td>
+                <td th:text="${resultado[0].km}"></td>
+                <td th:text="${resultado[0].dietas}"></td>
+                <td th:text="${resultado[0].visado}"></td>
+                <td th:text="${resultado[0].repro}"></td>
+                <td th:text="${resultado[1]}"></td>
+                <td th:text="${resultado[0].descripcion}"></td>
+                <td><a th:href="@{/formModificar(idEmpleado = ${empleado.idEmpleado},
+                     idActuacion = ${resultado[0].idActuaciones})}">Modificar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Importe total: <span th:text="${total}"></span></p>
+    <a th:href="@{/}">Volver al índice</a>
+</body>
+</html>
